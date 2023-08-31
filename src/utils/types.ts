@@ -9,7 +9,7 @@ export interface Account {
   e: string
   n: string | number
   t: string
-  id?: number | string | null
+  id: number | string
   saldo: string
   moneda: string
   tipo_letras: string

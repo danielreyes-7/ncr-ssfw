@@ -1,3 +1,4 @@
+/* importación de reglas de tailwind en el css principal del proyecto */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

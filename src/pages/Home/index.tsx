@@ -7,6 +7,7 @@ export const Home = () => {
   const navigate = useNavigate()
   const contextAccount = useContext(AccountsContext)
 
+  // Nos aseguramos que el contexto exista
   if (!contextAccount) {
     return null
   }
@@ -16,6 +17,7 @@ export const Home = () => {
       <button
         onClick={async () => {
           setIsLoadingData && setIsLoadingData(true)
+          // Simulamos un tiempo de carga de la data
           await new Promise((resolve) => setTimeout(resolve, 1000))
           setIsLoadingData && setIsLoadingData(false)
           navigate('/accounts')
@@ -23,9 +25,12 @@ export const Home = () => {
         className='relative bg-primary text-primary-foreground py-5 px-5 w-[20%] mt-[18%] text-xl font-semibold text-center rounded-md shadow-lg shadow-black/30 transition-colors duration-300 hover:bg-primary/90'
       >
         {loadingData && (
-          <ImSpinner10 className='animate-spin absolute top-6 left-16' />
+          <ImSpinner10
+            size={28}
+            className='animate-spin absolute top-5 left-[40px]'
+          />
         )}{' '}
-        Entra
+        Ingresa
       </button>
     </div>
   )

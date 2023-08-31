@@ -5,10 +5,16 @@ import { twMerge as tw } from 'tailwind-merge'
 interface ModuleProps {
   accountType: string
   accountNumber: string | number
+  id: number | string
   className?: string
-  id?: number | string | null
-  index?: number
 }
+
+/**
+ * @param accountType - (mandatory) Type: string. value: any text, for this case it's the account type
+ * @param accountNumber - (mandatory): Type: string or number. value: any number. ex: 56465454645 or '6565561651'
+ * @param id - (mandatory): Type: string or number. value: any value to identify de account. ex: '11536ADG' or 156153
+ * @param className - (optional): Type: string. value: may use any css class, in this case we're using tailwindcss. ex: 'flex'
+ */
 
 export const Module: FC<ModuleProps> = ({
   accountType,

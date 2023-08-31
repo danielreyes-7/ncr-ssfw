@@ -12,14 +12,17 @@ export const AccountsList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [accountsPerPage, setAccountsPerPage] = useState<number>(5)
 
+  // Función que maneja el botón para pasar a la siguiente página
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1)
   }
 
+  // Función que maneja el botón para regresar a la página anterior
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1)
   }
 
+  // Función que manera cuántos modulos de cuentas se muestran por ṕagina
   const handleAccountsPerPage = (data: Account[]) => {
     if (data.length > 6) {
       setAccountsPerPage(5)
@@ -28,34 +31,51 @@ export const AccountsList = () => {
     }
   }
 
+  // Función encargada de filtrar solo las cuentas que tengan 'CC' y 'CA' con saldos en '$' y 'u$s'
+  const filteredAccounts = (accounts: Account[]) => {
+    return accounts.filter(
+      (account) =>
+        (account.tipo_letras === 'CA' &&
+          (account.moneda === '$' || account.moneda === 'u$s')) ||
+        (account.tipo_letras === 'CC' &&
+          (account.moneda === '$' || account.moneda === 'u$s'))
+    )
+  }
+
+  // Ejecutamos el useEffect al renderizar la página y al haber un cambio en el contexto
   useEffect(() => {
+    // Nos aseguramos de que exista el contexto
     if (contextAccounts) {
       const { accounts } = contextAccounts
+
+      // Nos aseguramos de que exista accounts
       if (accounts) {
-        const filteredAccounts = accounts.filter(
-          (account) =>
-            (account.tipo_letras === 'CA' &&
-              (account.moneda === '$' || account.moneda === 'u$s')) ||
-            (account.tipo_letras === 'CC' &&
-              (account.moneda === '$' || account.moneda === 'u$s'))
-        )
-        handleAccountsPerPage(filteredAccounts)
-        setCurrentData(filteredAccounts)
+        // Hacemos uso de función para filtrar las cuenta que queremos ver
+        const newFilteredAccounts = filteredAccounts(accounts)
+        // Ejecutamos el manejador para determinar la cantidad de cuentas que estarán por página
+        handleAccountsPerPage(newFilteredAccounts)
+        // Seteamos el estado de la página actual a 1
+        setCurrentPage(1)
+        // Seteamos el estado para tener la data filtrada que mapearemos en el render del componente
+        setCurrentData(newFilteredAccounts)
       }
     }
   }, [contextAccounts])
 
+  // Definimos el numero de la última cuenta de la página actual
   const indexOfLastAccount = currentPage * accountsPerPage
+  // Definimos el numero de la primer cuenta de la página actual
   const indexOfFirstAccount = indexOfLastAccount - accountsPerPage
-
+  // Definimos el total de páginas que habrán
   const totalPages = Math.ceil(currentData.length / accountsPerPage)
-
+  // Tomamos las cuentas actuales a mostrar en la página actual
   const currentAccounts = currentData.slice(
     indexOfFirstAccount,
     indexOfLastAccount
   )
-
+  // Constante que define cuando mostrar el botón de Opciones anteriores
   const shouldShowPrevButton = currentPage > 1
+  // Constante que define cuando mostrar el botón de Más opciones
   const shouldShowNextButton = currentPage < totalPages
 
   return (
@@ -77,24 +97,16 @@ export const AccountsList = () => {
                 &laquo; Opciones anteriores
               </button>
             )}
-            {currentAccounts.map((account: Account, index: number) => {
-              if (
-                (account.tipo_letras === 'CA' &&
-                  (account.moneda === '$' || account.moneda === 'u$s')) ||
-                (account.tipo_letras === 'CC' &&
-                  (account.moneda === '$' || account.moneda === 'u$s'))
-              ) {
-                return (
-                  <Module
-                    className={tw('h-[150px]')}
-                    key={account.id}
-                    accountType={account.tipo_letras}
-                    accountNumber={account.n}
-                    id={account.id}
-                    index={index + 1}
-                  />
-                )
-              }
+            {currentAccounts.map((account: Account) => {
+              return (
+                <Module
+                  className={tw('h-[150px]')}
+                  key={account.id}
+                  accountType={account.tipo_letras}
+                  accountNumber={account.n}
+                  id={account.id}
+                />
+              )
             })}
             {shouldShowNextButton && (
               <button

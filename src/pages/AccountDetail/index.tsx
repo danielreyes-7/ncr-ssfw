@@ -1,6 +1,5 @@
 import { Account } from '../../utils/types'
 import { AccountsContext } from '../../context/accountsContext'
-import { toast } from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FC, useContext } from 'react'
 
@@ -9,12 +8,15 @@ export const AccountDetail: FC = () => {
   const navigate = useNavigate()
   const { id } = useParams()
 
+  // Nos aseguramos que el contexto exista
   if (!contextAccounts) {
-    return toast.error('Hubo un error al mostrar los datos')
+    return null
   }
 
   const { accounts } = contextAccounts
 
+  // Función que nos permite saber los datos de la cuenta que se van a mostrar
+  // al comparar el 'account.id' con el 'id' que entra por parámetro de la URL
   const selectedAccount: Account | undefined =
     accounts && accounts.find((account) => account.id === Number(id))
 
@@ -26,13 +28,17 @@ export const AccountDetail: FC = () => {
             <h3>Consulta de Saldo</h3>
             <h1 className='text-3xl font-medium'>Este es tu saldo actual</h1>
           </div>
-          <div className='w-3/4 md:w-1/2 xl:w-1/3 mx-auto py-10 mt-[8%] mb-[50px] rounded-md shadow-lg shadow-black/30'>
+          <div className='w-3/4 md:w-1/2 mx-auto py-10 mt-[8%] mb-[50px] rounded-md shadow-lg shadow-black/30'>
             <div className='w-fit flex flex-col justify-center mx-auto gap-4 text-md md:text-lg '>
               <p>Saldo de la cuenta: {selectedAccount.saldo}</p>
               <p>
                 Tipo de cuenta:{' '}
                 {(selectedAccount.tipo_letras === 'CC' && 'Cuenta Corriente') ||
-                  (selectedAccount.tipo_letras === 'CA' && 'Cuenta de Ahorro')}
+                  (selectedAccount.tipo_letras === 'CA' &&
+                    'Cuenta de Ahorro')}{' '}
+                en{' '}
+                {(selectedAccount.moneda === '$' && 'Pesos') ||
+                  (selectedAccount.moneda === 'u$s' && 'Dólares')}
               </p>
               <p>Número de cuenta: {selectedAccount.n}</p>
             </div>

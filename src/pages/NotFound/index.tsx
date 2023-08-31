@@ -9,6 +9,8 @@ type ErrorPageProps = {
   status?: number | undefined
 }
 
+// Página que maneja el proyecto cuando hay algun error
+
 const NotFound: FC = () => {
   const error = useRouteError()
 

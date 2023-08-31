@@ -6,6 +6,12 @@ interface NCRLogoProps {
   className?: string
 }
 
+/**
+ * @param size - (optional) Type: number  or string. value: number > 0 or string in px, ex: 50 or '50px'
+ * @param fill - (optional) Type: string. value: a string with the color name, a HEX color or RGB/RGBA color. ex: 'red', "#FFFFFF" or "rgba(181, 201, 160, 0.432)"
+ * @param className - (optional) Type: string. value: may use any css class, in this case we're using tailwindcss. ex: 'flex'
+ */
+
 export const NCRLogo: FC<NCRLogoProps> = ({ size, fill, className }) => (
   <svg
     className={className}

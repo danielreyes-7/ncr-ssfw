@@ -1,8 +1,8 @@
-import NotFound from '../pages/Notfound'
-import { Navigate, createBrowserRouter } from 'react-router-dom'
-import { Home } from '../pages/Home'
+import { Home } from '../pages'
 import { Layout } from '../layout/Layout'
+import { NotFound } from '../pages'
 import { AccountDetail, AccountsList } from '../pages'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 
 export const router = createBrowserRouter([
   {
