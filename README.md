@@ -1,6 +1,6 @@
 ## Paso a paso para arrancar el proyecto
 
-- Para poder instalar todas las dependencias necesarias para el correcto duncionacion del proyecto debe comenzar ejecutando el siguiente comando en su terminal:
+- Para poder instalar todas las dependencias necesarias para el correcto funcionamiento del proyecto debe comenzar ejecutando el siguiente comando en su terminal:
 
 ```js
    yarn o yarn install
