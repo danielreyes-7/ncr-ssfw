@@ -39,7 +39,15 @@ const NotFound: FC = () => {
       </div>
     )
   }
+
+  return (
+    <div className='flex flex-col justify-center items-center gap-4 pt-5'>
+      <h1 className='text-3xl font-semibold'>Página no encontrada</h1>
+      <button className='bg-slate-300 py-2 px-4 rounded-md transition-colors hover:bg-slate-400'>
+        <Link to='/'>Volver al Home</Link>
+      </button>
+    </div>
+  )
 }
 
 export default NotFound
-

@@ -1,6 +1,6 @@
 import { Home } from '../pages'
 import { Layout } from '../layout/Layout'
-import { NotFound } from '../pages'
+import NotFound from '../pages/NotFound'
 import { AccountDetail, AccountsList } from '../pages'
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 
