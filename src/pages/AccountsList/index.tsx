@@ -12,6 +12,9 @@ export const AccountsList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [accountsPerPage, setAccountsPerPage] = useState<number>(5)
 
+  // Función que maneja en useNavigate de react-router-dom, asi pasamos por props a cada modulo
+  const handleNavigate = (url: string) => navigate(url)
+
   // Función que maneja el botón para pasar a la siguiente página
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1)
@@ -83,8 +86,8 @@ export const AccountsList = () => {
       {currentAccounts && (
         <>
           <div className='flex flex-col justify-center items-center gap-2'>
-            <h3>Consulta de Saldo</h3>
-            <h1 className='text-3xl font-medium'>
+            <h3 className='text-xl'>Consulta de Saldo</h3>
+            <h1 className='text-4xl font-medium'>
               Selecciona la Cuenta a Consultar
             </h1>
           </div>
@@ -105,6 +108,7 @@ export const AccountsList = () => {
                   accountType={account.tipo_letras}
                   accountNumber={account.n}
                   id={account.id}
+                  navigate={handleNavigate}
                 />
               )
             })}

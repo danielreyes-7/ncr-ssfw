@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { twMerge as tw } from 'tailwind-merge'
 
 interface NCRLogoProps {
   size?: number | string
@@ -14,7 +15,7 @@ interface NCRLogoProps {
 
 export const NCRLogo: FC<NCRLogoProps> = ({ size, fill, className }) => (
   <svg
-    className={className}
+    className={tw(className)}
     xmlns='http://www.w3.org/2000/svg'
     xmlSpace='preserve'
     viewBox='0 0 360 360'
