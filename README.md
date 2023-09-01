@@ -15,7 +15,7 @@
 
 - Ahora solo queda entra a la siguiente URL: (http://localhost:5173/)
 
-## Paso para arrncar los test unitarios
+## Paso para arrancar los test unitarios
 
 - Ejecutar en la terminal el siguiente comando:
 
