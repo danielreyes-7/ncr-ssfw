@@ -25,8 +25,8 @@ export const AccountDetail: FC = () => {
       {selectedAccount && (
         <div className='flex flex-col justify-center items-center p-5'>
           <div className='flex flex-col justify-center items-center gap-2'>
-            <h3>Consulta de Saldo</h3>
-            <h1 className='text-3xl font-medium'>Este es tu saldo actual</h1>
+            <h3 className='text-xl'>Consulta de Saldo</h3>
+            <h1 className='text-4xl font-medium'>Este es tu saldo actual</h1>
           </div>
           <div className='w-3/4 md:w-1/2 mx-auto py-10 mt-[8%] mb-[50px] rounded-md shadow-lg shadow-black/30'>
             <div className='w-fit flex flex-col justify-center mx-auto gap-4 text-md md:text-lg '>
